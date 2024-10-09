@@ -1,10 +1,10 @@
 import ogImageSrc from "@images/social.png";
 
 export const SITE = {
-  title: "Will Gordon - Job Board Specialist & Recruiter",
-  tagline: "Helping companies build exceptional teams in Orange County and beyond",
-  description: "Will Gordon is a Co-Founder at Tustin Recruiting, helping companies in the Orange County area and beyond find top talent in sales and engineering.",
-  description_short: "Co-Founder at Tustin Recruiting, helping companies find top talent.",
+  title: "Will Gordon - Person",
+  tagline: "Doing things and chicken.",
+  description: "Building stuffs and eating and looking at other people do stuff, sometimes.",
+  description_short: "human on the internet. ",
   url: "https://will.xn--q9jyb4c/",
   author: "Will Gordon",
 };
