@@ -1,0 +1,75 @@
+---
+import Meta from "@common/Meta.astro";
+import { SITE } from "@data/constants";
+import { AstroFont } from "astro-font";
+import "@styles/normalize.css";
+import "@styles/about.css";
+import "@styles/dock.css";
+
+const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
+
+interface Props {
+  title?: string;
+  meta?: string;
+  structuredData?: object;
+  lang?: string;
+}
+---
+
+<html lang={lang} class="scrollbar-hide">
+  <head>
+    <Meta meta={meta} structuredData={structuredData} />
+    <title>{title}</title>
+    <AstroFont
+      config={[
+        {
+          name: "JetBrainsMono",
+          src: [
+            {
+              style: "normal",
+              weight: "600",
+              path: "/webfonts/JetBrainsMono-SemiBold.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "monospace",
+        },
+        {
+          name: "Nunito",
+          src: [
+            {
+              style: "normal",
+              weight: "500",
+              path: "/webfonts/Nunito.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "sans-serif",
+        },
+        {
+          name: "Montserrat700",
+          src: [
+            {
+              style: "normal",
+              weight: "700",
+              path: "/webfonts/Montserrat-700.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "sans-serif",
+        },
+      ]}
+    />
+    <script>
+      import "@scripts/about";
+    </script>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

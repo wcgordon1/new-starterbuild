@@ -1,0 +1,34 @@
+---
+import MainLayout from "@layouts/MainLayout.astro";
+import LiveClockUpdate from "@sections/LiveClockUpdate/LiveClockUpdate";
+import Dock from "@sections/Dock/Dock";
+import Logo from "@common/Logo.astro";
+---
+
+<MainLayout>
+  <div class="counter">
+    <p>0</p>
+  </div>
+
+  <section class="hero">
+    <div class="overlay"></div>
+
+    <div class="live__clock">
+      <LiveClockUpdate client:only="react" />
+    </div>
+    <div class="home__logo">
+      <Logo />
+    </div>
+    <div class="hero__secondary__header">
+      <h1>Hi there! I'm</h1>
+    </div>
+    <div id="textContainerMobile" class="hero__main__header__mobile"><h1>will g.</h1></div>
+    <div id="textContainer" class="hero__main__header"></div>
+    <div id="roleDescription" class="hero__role__description">
+      <p>
+        Just a human on the internet.
+      </p>
+    </div>
+    <Dock client:only="react" />
+  </section>
+</MainLayout>

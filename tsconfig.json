@@ -1,0 +1,46 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
+      "@sections/*": [
+        "src/components/sections/*"
+      ],
+      "@common/*": [
+        "src/components/common/*"
+      ],
+      "@content/*": [
+        "src/content/*"
+      ],
+      "@data/*": [
+        "src/data/*"
+      ],
+      "@images/*": [
+        "src/assets/img/*"
+      ],
+      "@favicons/*": [
+        "src/assets/favicon/*"
+      ],
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@styles/*": [
+        "src/assets/styles/*"
+      ],
+      "@scripts/*": [
+        "src/assets/scripts/*"
+      ],
+      "@utils/*": [
+        "src/utils/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

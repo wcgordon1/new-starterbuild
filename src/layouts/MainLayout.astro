@@ -1,0 +1,78 @@
+---
+import Meta from "@common/Meta.astro";
+// import { ViewTransitions } from 'astro:transitions';
+import { SITE } from "@data/constants";
+import { AstroFont } from "astro-font";
+import "@styles/normalize.css";
+import "@styles/styles.css";
+import "@styles/dock.css";
+
+// Setting expected props
+const { title = SITE.title, meta, structuredData, lang = "en" } = Astro.props;
+
+// Interface to type-check the properties
+interface Props {
+  title?: string;
+  meta?: string;
+  structuredData?: object;
+  lang?: string;
+}
+---
+
+<html lang={lang} class="scrollbar-hide">
+  <head>
+    <Meta meta={meta} structuredData={structuredData} />
+    <!-- <ViewTransitions /> -->
+    <title>{title}</title>
+    <AstroFont
+      config={[
+        {
+          name: "JetBrainsMono",
+          src: [
+            {
+              style: "normal",
+              weight: "600",
+              path: "/webfonts/JetBrainsMono-SemiBold.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "monospace",
+        },
+        {
+          name: "MontserratBlack",
+          src: [
+            {
+              style: "normal",
+              weight: "900",
+              path: "/webfonts/Montserrat-Black.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "sans-serif",
+        },
+        {
+          name: "Montserrat700",
+          src: [
+            {
+              style: "normal",
+              weight: "700",
+              path: "/webfonts/Montserrat-700.woff2",
+            },
+          ],
+          preload: true,
+          display: "swap",
+          fallback: "sans-serif",
+        },
+      ]}
+    />
+    <script src="@scripts/main.js"></script>
+  </head>
+  <body>
+    <p class="lcp">.</p>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>

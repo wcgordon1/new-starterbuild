@@ -1,0 +1,215 @@
+@font-face {
+  font-display: swap;
+  font-family: "JetBrainsMono";
+  font-style: normal;
+  src: url("/webfonts/JetBrainsMono-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Nunito";
+  font-style: normal;
+  src: url("/webfonts/Nunito.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Montserrat700";
+  font-style: normal;
+  src: url("/webfonts/Montserrat-700.woff2") format("woff2");
+}
+
+:root {
+  --vh: 100vh;
+  --vw: 100vw;
+  --background-color: #eeeeee;
+  --primary-color: #76abae;
+  --secondary-color: #393e46;
+  --text-dark: #222831;
+  --text-lighter: #6e7787;
+  --dock-border: #d9d9d9;
+  --dock-icon: #e6e6e6;
+  --dock-icon-border: #e1e1e1;
+  --unit-fx: calc(var(--vw) / 1440);
+  --unit-fy: calc(var(--vh) / 996);
+  --mono: "JetBrainsMono", ui-monospace;
+  --nunito: "Nunito", ui-sans-serif;
+  --montserrat: "Montserrat700", ui-sans-serif;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  :root {
+    --unit-fx: calc(var(--vw) / 375);
+    --unit-fy: calc(var(--vh) / 726);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  height: 100vh;
+  overflow: hidden;
+  user-select: none;
+  width: 100vw;
+}
+
+main {
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+.home__logo {
+  position: absolute;
+  right: calc(20 * var(--unit-fx));
+  top: calc(20 * var(--unit-fx));
+}
+
+.live__clock {
+  left: calc(20 * var(--unit-fx));
+  pointer-events: none;
+  position: absolute;
+  top: calc(20 * var(--unit-fx));
+
+  p {
+    font-family: var(--mono);
+    font-size: calc(10 * var(--unit-fx));
+  }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
+}
+
+.about__intro {
+  align-items: center;
+  display: flex;
+  gap: calc(100 * var(--unit-fx));
+  margin: 0 auto;
+  width: 75%;
+}
+
+.about__portrait__image {
+  flex: 1;
+}
+
+.about__portrait {
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.about__portrait img {
+  border-radius: calc(30 * var(--unit-fx));
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.about__copy__wrapper {
+  align-self: center;
+  flex: 1.5;
+}
+
+.about__copy__wrapper h1 {
+  font-family: var(--montserrat);
+  font-size: calc(30 * var(--unit-fx));
+  margin-bottom: calc(30 * var(--unit-fx));
+}
+
+.about__copy__wrapper p {
+  margin-bottom: calc(10 * var(--unit-fx));
+  opacity: 0;
+}
+
+.about__copy {
+  font-family: var(--nunito);
+  font-size: calc(18 * var(--unit-fx));
+}
+
+.about__intro .line-wrapper,
+.about__intro .about__copy__title {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+.about__intro .about__copy__title h1 {
+  position: relative;
+  transform: translateY(70px);
+  will-change: transform;
+}
+
+.about__intro .line-wrapper span {
+  position: relative;
+  transform: translateY(30px);
+  will-change: transform;
+}
+
+@media screen and (max-width: 600px) and (orientation: portrait) {
+  html,
+  body,
+  main {
+    height: 100%;
+    overflow: scroll;
+  }
+
+  .live__clock {
+    p {
+      font-size: calc(11 * var(--unit-fx));
+    }
+  }
+  
+  .home__logo,
+  .live__clock {
+    z-index: 2;
+  }
+
+  .container {
+    margin-bottom: calc(50 * var(--unit-fx));
+  }
+
+  .about__intro {
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
+    padding-top: calc(30 * var(--unit-fx));
+    width: 90%;
+  }
+
+  .about__portrait__image {
+    width: 100%;
+    margin-bottom: calc(20 * var(--unit-fx));
+  }
+
+  .about__portrait img {
+    width: 100%;
+    height: auto;
+  }
+
+  .about__copy__wrapper {
+    width: 100%;
+    text-align: start;
+  }
+
+  .about__copy {
+    font-size: calc(14 * var(--unit-fx));
+  }
+
+  .about__copy__wrapper h1 {
+    font-size: calc(22 * var(--unit-fx));
+    margin-bottom: calc(15 * var(--unit-fx));
+  }
+
+  .about__copy__wrapper p {
+    margin-bottom: calc(5 * var(--unit-fx));
+  }
+}

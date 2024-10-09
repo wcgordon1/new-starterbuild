@@ -1,0 +1,29 @@
+---
+import ProjectsLayout from "@layouts/ProjectsLayout.astro";
+import LiveClockUpdate from "@sections/LiveClockUpdate/LiveClockUpdate";
+import Dock from "@sections/Dock/Dock";
+import Logo from "@common/Logo.astro";
+import Icon from "@sections/Dock/Icon";
+import { projects } from "@data/projects.js";
+---
+
+<ProjectsLayout>
+  <div class="live__clock">
+    <LiveClockUpdate client:only="react" />
+  </div>
+  <div class="home__logo">
+    <Logo />
+  </div>
+  <Dock client:only="react" />
+  <div class="container">
+    <div class="projects"></div>
+    <div class="projects__mobile">
+      {projects.map(project => (
+        <div class="project__mobile">
+          <a href={project.url} target="_blank">{project.name}<span>({project.id})</span></a> <Icon name="arrowUp"/>
+          <p>{project.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</ProjectsLayout>
