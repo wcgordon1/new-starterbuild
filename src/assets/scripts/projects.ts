@@ -26,9 +26,26 @@ document.addEventListener("DOMContentLoaded", function () {
     descriptionBox.appendChild(descriptionContent);
     document.querySelector("main")?.appendChild(descriptionBox);
 
-    const numberOfProjects = 40;
-    const radius = 1100;
-    const centerX = window.innerWidth / 2;
+    const numberOfProjects = 7;
+    const radius = 350;
+    
+    // Function to calculate centerX dynamically
+    function getCenterX(): number {
+      const width = window.innerWidth;
+      if (width <= 768) {
+        return width * 1.35; // left: -200%, width: 270%
+      } else if (width <= 1024) {
+        return width * 1.2; // left: -145%, width: 240%
+      } else if (width <= 1280) {
+        return width * 1.05; // left: -110%
+      } else if (width <= 1536) {
+        return width; // left: -100%
+      } else {
+        return width * 0.875; // left: -75%
+      }
+    }
+    
+    const centerX = getCenterX();
     const centerY = window.innerHeight / 2;
     const angleIncrement = (2 * Math.PI) / numberOfProjects;
 
@@ -58,12 +75,23 @@ document.addEventListener("DOMContentLoaded", function () {
       const angle = i * angleIncrement;
       const x = centerX + radius * Math.cos(angle);
       const y = centerY + radius * Math.sin(angle);
-      const rotation = (angle * 180) / Math.PI;
+      
+      // Keep rotation readable - prevent upside down text
+      let rotation = (angle * 180) / Math.PI * 0.5;
+      rotation = ((rotation % 360) + 360) % 360; // Normalize to 0-360
+      if (rotation > 90 && rotation < 270) {
+        rotation = rotation - 180; // Flip text to keep it readable
+      }
+
+      // Set absolute positioning and initial styles
+      item.style.position = 'absolute';
+      item.style.left = x + 'px';
+      item.style.top = y + 'px';
+      item.style.transform = `rotate(${rotation}deg)`;
+      item.style.zIndex = '10';
 
       gsap.set(item, {
-        x: x + "px",
-        y: y + "px",
-        rotation: rotation,
+        opacity: 0,
       });
 
       item.addEventListener("mouseenter", () => {
@@ -92,21 +120,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updatePosition() {
-      const scrollAmount = window.scrollY * 0.0001;
+      const scrollAmount = window.scrollY * 0.0003;
+      const currentCenterX = getCenterX(); // Recalculate centerX for current viewport
+      
       document
         .querySelectorAll<HTMLDivElement>(".item")
         .forEach((item, index) => {
           const angle = index * angleIncrement + scrollAmount;
-          const x = centerX + radius * Math.cos(angle);
+          const x = currentCenterX + radius * Math.cos(angle);
           const y = centerY + radius * Math.sin(angle);
-          const rotation = (angle * 180) / Math.PI;
+          
+          // Keep rotation readable - prevent upside down text
+          let rotation = (angle * 180) / Math.PI * 0.5;
+          rotation = ((rotation % 360) + 360) % 360; // Normalize to 0-360
+          if (rotation > 90 && rotation < 270) {
+            rotation = rotation - 180; // Flip text to keep it readable
+          }
 
+          // Use GSAP for smooth animations
           gsap.to(item, {
-            duration: 0.05,
-            x: x + "px",
-            y: y + "px",
+            duration: 0.1,
+            left: x + 'px',
+            top: y + 'px',
             rotation: rotation,
-            ease: "elastic.out(1, 0.3)",
+            ease: "power2.out",
           });
         });
     }

@@ -355,7 +355,7 @@ function initializeScene(texture) {
 
 function reloadTexture() {
   const newTexture = createTextTexture(
-    " will g. ",
+    "  StarterBuild  ",
     "MontserratBlack",
     null,
     "#EEEEEE"
@@ -364,7 +364,7 @@ function reloadTexture() {
 }
 
 initializeScene(
-  createTextTexture(" will g. ", "MontserratBlack", null, "#EEEEEE")
+  createTextTexture("  StarterBuild  ", "MontserratBlack", null, "#EEEEEE")
 );
 
 function animateScene() {

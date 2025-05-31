@@ -96,7 +96,7 @@ const Dock = () => {
   const icons = [
     { iconName: "home", path: "/", ariaLabel: "Home page" },
     { iconName: "about", path: "/about", ariaLabel: "About page" },
-    { iconName: "folder", path: "/projects", ariaLabel: "Projects page" },
+    //{ iconName: "folder", path: "/projects", ariaLabel: "Projects page" },
     {
       iconName: "x",
       path: "https://x.com/helloIamWilly",
@@ -106,7 +106,7 @@ const Dock = () => {
     { iconName: "linkedin", path: "https://www.linkedin.com/in/will-gordon1/", ariaLabel: "Visit my LinkedIn profile (opens in a new tab)", external: true },
     {
       iconName: "envelope",
-      email: { address: "will", domain: "tustinrecruiting.com" },
+      email: { address: "will", domain: "starterbuild.com" },
       ariaLabel: "Contact me",
     },
   ];
