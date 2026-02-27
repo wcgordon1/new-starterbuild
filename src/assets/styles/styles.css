@@ -217,16 +217,17 @@ main {
     left: 50%;
     opacity: 0;
     position: relative;
-    top: 50%;
+    top: 42%;
     transform: translate(-50%, -50%);
     width: 100%;
+    padding: 0 20px;
 
     h1 {
       color: var(--primary-color);
       font-family: var(--montserrat-black);
-      font-size: 20vw;
-      line-height: 1.4;
-      text-align: center;
+      font-size: 14vw;
+      line-height: 1.2;
+      text-align: left;
 
       span {
         display: inline-block;
@@ -244,14 +245,15 @@ main {
     opacity: 0;
     padding-right: 0;
     position: absolute;
-    top: 65%;
-    left: 50%;
+    top: 56%;
+    left: 20px;
     transform: translateY(50px);
     transform: translate(0%, 50px);
-    width: 45%;
+    width: 70%;
 
     p {
       font-size: calc(26 * var(--unit-fx));
+      text-align: left;
     }
   }
 }
@@ -280,16 +282,17 @@ main {
     left: 50%;
     opacity: 0;
     position: relative;
-    top: 50%;
+    top: 38%;
     transform: translate(-50%, -50%);
     width: 100%;
+    padding: 0 20px;
 
     h1 {
       color: var(--primary-color);
       font-family: var(--montserrat-black);
-      font-size: calc(85 * var(--unit-fx));
-      line-height: 1.4;
-      text-align: center;
+      font-size: calc(95 * var(--unit-fx));
+      line-height: 1.1;
+      text-align: left;
 
       span {
         display: inline-block;
@@ -304,17 +307,18 @@ main {
   }
 
   .hero__role__description {
-    left: calc(20 * var(--unit-fx));
+    left: 20px;
     opacity: 0;
-    padding-right: 0;
+    padding-right: 20px;
     position: absolute;
-    top: 60%;
+    top: 52%;
     transform: translateY(50px);
     transform: translate(0%, 50px);
     width: 85%;
 
     p {
-      font-size: calc(13 * var(--unit-fx));
+      font-size: calc(14 * var(--unit-fx));
+      text-align: left;
     }
   }
 }
