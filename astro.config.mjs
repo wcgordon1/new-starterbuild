@@ -9,7 +9,7 @@ import compressor from 'astro-compressor';
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://will.xn--q9jyb4c/",
+  site: "https://starterbuild.com",
   trailingSlash: "never",
   prefetch: true,
   experimental: {

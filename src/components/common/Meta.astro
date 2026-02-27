@@ -4,31 +4,48 @@ import { OG, SEO, SITE } from "@data/constants";
 import faviconSvgSrc from "@favicons/icon.svg";
 import faviconSrc from "@favicons/icon.png";
 
-const defaultProps = {
-  meta: SITE.description,
-  structuredData: SEO.structuredData,
-};
+interface Props {
+  meta?: string;
+  structuredData?: object;
+  pageTitle?: string;
+  pageDescription?: string;
+  ogType?: string;
+  articleMeta?: {
+    publishedTime?: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  noindex?: boolean;
+}
 
 const {
-  meta = defaultProps.meta,
-  structuredData = defaultProps.structuredData,
+  meta = SITE.description,
+  structuredData = SEO.structuredData,
+  pageTitle,
+  pageDescription,
+  ogType = "website",
+  articleMeta,
+  noindex = false,
 } = Astro.props;
 
-// Define the metadata for your website and individual pages
-const URL = `${Astro.site}`;
 const author = SITE.author;
-const canonical = Astro.url.href;
-const ogTitle = OG.title;
-const ogDescription = OG.description;
+const canonicalRaw = Astro.url.href;
+const canonical = canonicalRaw.replace(/\/+$/, "") || SITE.url;
+const pageUrl = canonical;
+const title = pageTitle || OG.title;
+const description = pageDescription || OG.description;
 const socialImageRes = await getImage({
   src: OG.image,
   width: 1200,
   height: 600,
 });
 const socialImage = Astro.url.origin + socialImageRes.src;
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
-
-// Generate and optimize the favicon images
 const faviconSvg = await getImage({
   src: faviconSvgSrc,
   format: "svg",
@@ -42,8 +59,7 @@ const appleTouchIcon = await getImage({
 });
 ---
 
-<!-- Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
-     https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data -->{
+{
   structuredData && (
     <script
       type="application/ld+json"
@@ -51,10 +67,10 @@ const appleTouchIcon = await getImage({
     />
   )
 }
-<!-- Define the character set, description, author, and viewport settings -->
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <meta content={meta} name="description" />
-<meta name="web_author" content={author} />
+<meta name="author" content={author} />
+<meta name="robots" content={robotsContent} />
 <meta
   name="viewport"
   content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0"
@@ -62,36 +78,44 @@ const appleTouchIcon = await getImage({
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="canonical" href={canonical} />
 
-<!-- Facebook Meta Tags -->
+<!-- Open Graph -->
 <meta property="og:locale" content="en_US" />
-<meta property="og:url" content={URL} />
-<meta property="og:type" content="website" />
-<meta property="og:title" content={ogTitle} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:type" content={ogType} />
+<meta property="og:title" content={title} />
 <meta property="og:site_name" content={SITE.title} />
-<meta property="og:description" content={ogDescription} />
+<meta property="og:description" content={description} />
 <meta property="og:image" content={socialImage} />
-<meta content="1200" property="og:image:width" />
-<meta content="600" property="og:image:height" />
-<meta content="image/png" property="og:image:type" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="600" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:alt" content={title} />
 
-<!-- Twitter Meta Tags -->
+{articleMeta && (
+  <>
+    {articleMeta.publishedTime && <meta property="article:published_time" content={articleMeta.publishedTime} />}
+    {articleMeta.modifiedTime && <meta property="article:modified_time" content={articleMeta.modifiedTime} />}
+    {articleMeta.author && <meta property="article:author" content={articleMeta.author} />}
+    {articleMeta.section && <meta property="article:section" content={articleMeta.section} />}
+    {articleMeta.tags?.map((tag) => <meta property="article:tag" content={tag} />)}
+  </>
+)}
+
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta property="twitter:domain" content={URL} />
-<meta property="twitter:url" content={URL} />
-<meta name="twitter:title" content={ogTitle} />
-<meta name="twitter:description" content={ogDescription} />
+<meta name="twitter:site" content="@starterbuild" />
+<meta name="twitter:creator" content="@starterbuild" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={title} />
 
-<!-- Links to the webmanifest and sitemap -->
 <link rel="manifest" href="/manifest.json" />
-<!-- https://docs.astro.build/en/guides/integrations-guide/sitemap/ -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<!-- Links for favicons -->
 <link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon" />
 <link href={faviconSvg.src} rel="icon" type="image/svg+xml" sizes="any" />
 <meta name="mobile-web-app-capable" content="yes" />
 <link href={appleTouchIcon.src} rel="apple-touch-icon" />
 <link href={appleTouchIcon.src} rel="shortcut icon" />
-<!-- Set theme color -->
-<meta name="theme-color" content="#eee" />
+<meta name="theme-color" content="#eeeeee" />

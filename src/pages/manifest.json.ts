@@ -44,12 +44,14 @@ export const GET: APIRoute = async () => {
     );
 
     const manifest = {
-        name: "william",
+        name: "StarterBuild",
+        short_name: "StarterBuild",
+        description: "We design and build meaningful digital experiences.",
         icons,
         display: "minimal-ui",
         id: "/",
         start_url: "/",
-        theme_color: "#00ADB5",
+        theme_color: "#76abae",
         background_color: "#eeeeee",
     };
 

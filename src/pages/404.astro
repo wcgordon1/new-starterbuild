@@ -2,11 +2,12 @@
 import PageNotFoundLayout from "@layouts/PageNotFoundLayout.astro";
 
 const title: string = "404";
-const subTitle: string = "Oops! You’ve found a hidden page!";
-const btnTitle: string = "Let’s head back";
+const subTitle: string = "Oops! You've found a hidden page!";
+const btnTitle: string = "Let's head back";
+const pageTitle: string = "Page Not Found | StarterBuild";
 ---
 
-<PageNotFoundLayout>
+<PageNotFoundLayout title={pageTitle}>
   <div id="square-container" class="square__container"></div>
   <section>
     <div class="wrapper">

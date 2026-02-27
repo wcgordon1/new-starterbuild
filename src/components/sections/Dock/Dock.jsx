@@ -99,11 +99,16 @@ const Dock = () => {
     //{ iconName: "folder", path: "/projects", ariaLabel: "Projects page" },
     {
       iconName: "x",
-      path: "https://x.com/helloIamWilly",
-      ariaLabel: "Visit my X profile (opens in a new tab)",
+      path: "https://x.com/starterbuild",
+      ariaLabel: "Visit StarterBuild on X (opens in a new tab)",
       external: true,
     },
-    { iconName: "linkedin", path: "https://www.linkedin.com/in/will-gordon1/", ariaLabel: "Visit my LinkedIn profile (opens in a new tab)", external: true },
+    {
+      iconName: "linkedin",
+      path: "https://www.linkedin.com/company/starterbuild/",
+      ariaLabel: "Visit StarterBuild on LinkedIn (opens in a new tab)",
+      external: true,
+    },
     {
       iconName: "envelope",
       email: { address: "will", domain: "starterbuild.com" },

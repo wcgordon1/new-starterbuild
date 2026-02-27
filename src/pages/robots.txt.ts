@@ -2,13 +2,16 @@
 import type { APIRoute } from 'astro';
 
 const robotsTxt = `
-User-agent: Googlebot
-Disallow:
+User-agent: *
 Allow: /
-Crawl-delay: 10
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 User-agent: archive.org_bot
-Disallow:
 Allow: /
 Crawl-delay: 2
 

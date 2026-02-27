@@ -7,7 +7,7 @@ Preferred-Languages: en
 `;
 
 export const GET: APIRoute = () => {
-  const contactEmail = "mailto:wcgordon1@gmail.com";
+  const contactEmail = "will@starterbuild.com";
   return new Response(getSecurityTxt(contactEmail), {
     headers: {
       "Content-Type": "text/plain",
